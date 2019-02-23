@@ -5,12 +5,12 @@ from django.contrib.auth.views import (LoginView, LogoutView,
                                        PasswordResetDoneView,
                                        PasswordResetConfirmView,
                                        PasswordResetCompleteView,
-                                       PasswordChangeView,
                                        PasswordChangeDoneView)
 
 # local Django
 from authentication import views
 from authentication.views import anonymous_required
+from authentication.views import ChangePasswordView
 from authentication.forms import EmailValidationOnForgotPassword
 
 urlpatterns = [
@@ -48,8 +48,8 @@ urlpatterns = [
         ),
         name='password_reset_complete'
         ),
-    url(r'^change-password/$',
-        PasswordChangeView.as_view(success_url='done/'),
+    url(r'^change-password/$', 
+        ChangePasswordView.as_view(success_url='done/'),
         name='password_change'),
     url(r'^change-password/done/$',
         PasswordChangeDoneView.as_view(

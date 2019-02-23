@@ -1,9 +1,15 @@
 # Django
 from django.core.urlresolvers import reverse
 from django.shortcuts import redirect
+from django.contrib.auth.views import PasswordChangeView
 
 # local Django
 from vms import settings
+from authentication.forms import ValidatingPasswordChangeForm
+
+
+class ChangePasswordView(PasswordChangeView):
+    form_class = ValidatingPasswordChangeForm
 
 
 def index(request):
